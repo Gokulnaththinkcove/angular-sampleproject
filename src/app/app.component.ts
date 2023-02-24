@@ -93,11 +93,7 @@ export class AppComponent {
     { productName: 'TamilNadu', productId: 7, categoryId: 2 },
     { productName: 'Azad Jammu &Kashmir', productId: 8, categoryId: 3 },
     { productName: 'Balochistan', productId: 9, categoryId: 3 },
-    {
-      productName: 'Islamabad Capital Territory',
-      productId: 10,
-      categoryId: 3,
-    },
+    { productName: 'Islamabad Capital Territory', productId: 10, categoryId: 3}
   ];
 
   public dataOrders: Array<{
