@@ -2,166 +2,124 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  template: `
-     <div class="container-fluid example-wrapper">
-    <div class="row">
-        <div class="col-xs-12 col-sm-4 example-col">
-            <p>Country:</p>
-            <kendo-dropdownlist [data]="dataCategory" [value]="selectedCategory" [defaultItem]="defaultItemCategories"
-                textField="categoryName" valueField="categoryId" (valueChange)="handleCategoryChange($event)">
-            </kendo-dropdownlist>
-        </div>
-        <div class="col-xs-12 col-sm-4 example-col">
-            <p>State:</p>
-            <kendo-dropdownlist [disabled]="isDisabledProducts" [defaultItem]="defaultItemProducts"
-                [data]="dataResultProducts" [value]="selectedProduct" textField="productName" valueField="productId"
-                (valueChange)="handleProductChange($event)">
-            </kendo-dropdownlist>
-        </div>
-        <div class="col-xs-12 col-sm-4 example-col">
-            <p>City:</p>
-            <kendo-dropdownlist [disabled]="isDisabledOrders" [defaultItem]="defaultItemOrders"
-                [data]="dataResultOrders" [value]="selectedOrder" textField="orderName" valueField="orderId"
-                (valueChange)="handleOrderChange($event)">
-            </kendo-dropdownlist>
-        </div>
-    </div>
-</div>
-    `,
-  styles: [
-    `
-        kendo-dropdownlist {
-            width: 170px;
-        }
-    `,
-  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public isDisabledProducts = true;
-  public isDisabledOrders = true;
+  public isDisableState = true;
+  public isDisableCity = true;
 
-  public defaultItemCategories: { categoryName: string; categoryId: number } = {
-    categoryName: 'Select category',
-    categoryId: null,
+  public defaultCountry: { countryName: string; countryId: number | any } = {
+    countryName: 'Select Country',
+    countryId: null,
+  };
+  public defaultState: { stateName: string; stateId: number | any } = {
+    stateName: 'Select State',
+    stateId: null,
+  };
+  public defaultCity: { cityName: string; cityId: number | any } = {
+    cityName: 'Select City',
+    cityId: null,
   };
 
-  public defaultItemProducts: { productName: string; productId: number } = {
-    productName: 'Select product',
-    productId: null,
-  };
-
-  public defaultItemOrders: { orderName: string; orderId: number } = {
-    orderName: 'Select order',
-    orderId: null,
-  };
-
-  public dataCategory: Array<{ categoryName: string; categoryId: number }> = [
-    { categoryName: 'Austalia', categoryId: 1 },
-    { categoryName: 'India', categoryId: 2 },
-    { categoryName: 'Pakisthan', categoryId: 3 },
+  public dataCountry: Array<{ countryName: string; countryId: number }> = [
+    { countryName: 'Austalia', countryId: 1 },
+    { countryName: 'India', countryId: 2 },
+    { countryName: 'Pakisthan', countryId: 3 },
   ];
 
-  public dataProducts: Array<{
-    productName: string;
-    productId: number;
-    categoryId: number;
+  public dataState: Array<{
+    stateName: string;
+    stateId: number;
+    countryId: number;
   }> = [
-    { productName: 'New South Wales', productId: 1, categoryId: 1 },
-    { productName: 'Victoria', productId: 2, categoryId: 1 },
-    { productName: 'Queensland', productId: 3, categoryId: 1 },
-    { productName: 'Andhra Pradesh', productId: 4, categoryId: 2 },
-    { productName: 'Karnataka', productId: 5, categoryId: 2 },
-    { productName: 'Kerala', productId: 6, categoryId: 2 },
-    { productName: 'TamilNadu', productId: 7, categoryId: 2 },
-    { productName: 'Azad Jammu &Kashmir', productId: 8, categoryId: 3 },
-    { productName: 'Balochistan', productId: 9, categoryId: 3 },
-    { productName: 'Islamabad Capital Territory', productId: 10, categoryId: 3}
+    { stateName: 'New South Wales', stateId: 1, countryId: 1 },
+    { stateName: 'Victoria', stateId: 2, countryId: 1 },
+    { stateName: 'Queensland', stateId: 3, countryId: 1 },
+    { stateName: 'Andhra Pradesh', stateId: 4, countryId: 2 },
+    { stateName: 'Karnataka', stateId: 5, countryId: 2 },
+    { stateName: 'Kerala', stateId: 6, countryId: 2 },
+    { stateName: 'TamilNadu', stateId: 7, countryId: 2 },
+    { stateName: 'Azad Jammu &Kashmir', stateId: 8, countryId: 3 },
+    { stateName: 'Balochistan', stateId: 9, countryId: 3 },
+    { stateName: 'Islamabad Capital Territory', stateId: 10, countryId: 3 },
   ];
 
-  public dataOrders: Array<{
-    orderName: string;
-    orderId: number;
-    productId: number;
+  public dataCity: Array<{
+    cityName: string;
+    cityId: number;
+    stateId: number;
   }> = [
-    { orderName: 'Cardiff', orderId: 1, productId: 1 },
-    { orderName: 'NewPort', orderId: 2, productId: 1 },
-    { orderName: 'Swansea', orderId: 3, productId: 1 },
-    { orderName: 'Melbourne', orderId: 4, productId: 2 },
-    { orderName: 'Portland', orderId: 5, productId: 2 },
-    { orderName: 'Central Queensland', orderId: 6, productId: 3 },
-    { orderName: 'Central West Queensland', orderId: 7, productId: 3 },
-    { orderName: 'South West Queensland', orderId: 8, productId: 3 },
-    { orderName: 'Visakhapatnam', orderId: 7, productId: 4 },
-    { orderName: 'Tirupati', orderId: 8, productId: 4 },
-    { orderName: 'Bagalkot', orderId: 9, productId: 5 },
-    { orderName: 'Bengaluru Urban', orderId: 10, productId: 5 },
-    { orderName: 'Bengaluru Rural', orderId: 11, productId: 5 },
-    { orderName: 'Udupi', orderId: 12, productId: 5 },
-    { orderName: 'Alappuzha', orderId: 13, productId: 6 },
-    { orderName: 'Ernakulam', orderId: 14, productId: 6 },
-    { orderName: 'Kozhikode', orderId: 15, productId: 6 },
-    { orderName: 'Chennai', orderId: 16, productId: 7 },
-    { orderName: 'Coimbatore', orderId: 17, productId: 7 },
-    { orderName: 'Tirunelveli', orderId: 18, productId: 7 },
-    { orderName: 'New Mirpur City', orderId: 19, productId: 8 },
-    { orderName: 'Muzaffarabad', orderId: 20, productId: 8 },
-    { orderName: 'Chaman', orderId: 21, productId: 9 },
-    { orderName: 'Hub', orderId: 22, productId: 9 },
-    { orderName: 'Islamabad Rural', orderId: 23, productId: 10 },
-    { orderName: 'Rawalpindi', orderId: 24, productId: 10 },
+    { cityName: 'Cardiff', cityId: 1, stateId: 1 },
+    { cityName: 'NewPort', cityId: 2, stateId: 1 },
+    { cityName: 'Swansea', cityId: 3, stateId: 1 },
+    { cityName: 'Melbourne', cityId: 4, stateId: 2 },
+    { cityName: 'Portland', cityId: 5, stateId: 2 },
+    { cityName: 'Central Queensland', cityId: 6, stateId: 3 },
+    { cityName: 'Central West Queensland', cityId: 7, stateId: 3 },
+    { cityName: 'South West Queensland', cityId: 8, stateId: 3 },
+    { cityName: 'Visakhapatnam', cityId: 7, stateId: 4 },
+    { cityName: 'Tirupati', cityId: 8, stateId: 4 },
+    { cityName: 'Bagalkot', cityId: 9, stateId: 5 },
+    { cityName: 'Bengaluru Urban', cityId: 10, stateId: 5 },
+    { cityName: 'Bengaluru Rural', cityId: 11, stateId: 5 },
+    { cityName: 'Udupi', cityId: 12, stateId: 5 },
+    { cityName: 'Alappuzha', cityId: 13, stateId: 6 },
+    { cityName: 'Ernakulam', cityId: 14, stateId: 6 },
+    { cityName: 'Kozhikode', cityId: 15, stateId: 6 },
+    { cityName: 'Chennai', cityId: 16, stateId: 7 },
+    { cityName: 'Coimbatore', cityId: 17, stateId: 7 },
+    { cityName: 'Tirunelveli', cityId: 18, stateId: 7 },
+    { cityName: 'New Mirpur City', cityId: 19, stateId: 8 },
+    { cityName: 'Muzaffarabad', cityId: 20, stateId: 8 },
+    { cityName: 'Chaman', cityId: 21, stateId: 9 },
+    { cityName: 'Hub', cityId: 22, stateId: 9 },
+    { cityName: 'Islamabad Rural', cityId: 23, stateId: 10 },
+    { cityName: 'Rawalpindi', cityId: 24, stateId: 10 },
   ];
+  public dataResultStates:
+    | Array<{ stateName: string; stateId: number; countryId: number }>
+    | undefined;
+  public dataResultCity:
+    | Array<{ cityName: string; cityId: number; stateId: number }>
+    | undefined;
 
-  public dataResultProducts: Array<{
-    productName: string;
-    productId: number;
-    categoryId: number;
-  }>;
+  public selectedCountry: { countryName: string; countryId: number } | any;
+  public selectedState: { stateName: string; stateId: number } | any;
+  public selectedCity: { cityName: string; cityId: number } | any;
 
-  public dataResultOrders: Array<{
-    orderName: string;
-    orderId: number;
-    productId: number;
-  }>;
+  handleCountryChange(value: any) {
+    this.selectedCountry = value;
+    this.selectedState = undefined;
+    this.selectedCity = undefined;
 
-  public selectedCategory: { categoryName: string; categoryId: number };
-  public selectedProduct: { productName: string; productId: number };
-  public selectedOrder: { orderName: string; orderId: number };
-
-  handleCategoryChange(value) {
-    this.selectedCategory = value;
-    this.selectedProduct = undefined;
-    this.selectedOrder = undefined;
-
-    if (value.categoryId === this.defaultItemCategories.categoryId) {
-      this.isDisabledProducts = true;
-      this.dataResultProducts = [];
+    if (value.countryId === this.defaultCountry.countryId) {
+      this.isDisableState = true;
+      this.dataResultStates = [];
     } else {
-      this.isDisabledProducts = false;
-      this.dataResultProducts = this.dataProducts.filter(
-        (s) => s.categoryId === value.categoryId
+      this.isDisableState = false;
+      this.dataResultStates = this.dataState.filter(
+        (s) => s.countryId === value.countryId
       );
     }
-
-    this.isDisabledOrders = true;
-    this.dataResultOrders = [];
+    this.isDisableCity = true;
+    this.dataResultCity = [];
   }
+  handleStateChange(value: any) {
+    this.selectedState = value;
+    this.selectedCity = undefined;
 
-  handleProductChange(value) {
-    this.selectedProduct = value;
-    this.selectedOrder = undefined;
-
-    if (value.productId === this.defaultItemProducts.productId) {
-      this.isDisabledOrders = true;
-      this.dataResultOrders = [];
+    if (value.stateId === this.defaultState.stateId) {
+      this.isDisableCity = true;
+      this.dataResultCity = [];
     } else {
-      this.isDisabledOrders = false;
-      this.dataResultOrders = this.dataOrders.filter(
-        (s) => s.productId === value.productId
+      this.isDisableCity = false;
+      this.dataResultCity = this.dataCity.filter(
+        (s) => s.stateId === value.stateId
       );
     }
   }
-
-  handleOrderChange(value) {
-    this.selectedOrder = value;
+  handleCityChange(value: any) {
+    this.selectedCity = value;
   }
 }
