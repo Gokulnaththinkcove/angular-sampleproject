@@ -23,7 +23,7 @@ export class AppComponent {
   };
 
   public dataCountry: Array<{ countryName: string; countryId: number }> = [
-    { countryName: 'Austalia', countryId: 1 },
+    { countryName: 'Australia', countryId: 1 },
     { countryName: 'India', countryId: 2 },
     { countryName: 'Pakisthan', countryId: 3 },
   ];
