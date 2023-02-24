@@ -3,48 +3,30 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `
-      <div class="container-fluid example-wrapper">
-          <div class="row">
-              <div class="col-xs-12 col-sm-4 example-col">
-                  <p>Country:</p>
-                  <kendo-dropdownlist
-                      [data]="dataCategory"
-                      [value]="selectedCategory"
-                      [defaultItem]="defaultItemCategories"
-                      textField="categoryName"
-                      valueField="categoryId"
-                      (valueChange)="handleCategoryChange($event)"
-                  >
-                  </kendo-dropdownlist>
-              </div>
-              <div class="col-xs-12 col-sm-4 example-col">
-                  <p>State:</p>
-                  <kendo-dropdownlist
-                      [disabled]="isDisabledProducts"
-                      [defaultItem]="defaultItemProducts"
-                      [data]="dataResultProducts"
-                      [value]="selectedProduct"
-                      textField="productName"
-                      valueField="productId"
-                      (valueChange)="handleProductChange($event)"
-                  >
-                  </kendo-dropdownlist>
-              </div>
-              <div class="col-xs-12 col-sm-4 example-col">
-                  <p>City:</p>
-                  <kendo-dropdownlist
-                      [disabled]="isDisabledOrders"
-                      [defaultItem]="defaultItemOrders"
-                      [data]="dataResultOrders"
-                      [value]="selectedOrder"
-                      textField="orderName"
-                      valueField="orderId"
-                      (valueChange)="handleOrderChange($event)"
-                  >
-                  </kendo-dropdownlist>
-              </div>
-          </div>
-      </div>
+     <div class="container-fluid example-wrapper">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 example-col">
+            <p>Country:</p>
+            <kendo-dropdownlist [data]="dataCategory" [value]="selectedCategory" [defaultItem]="defaultItemCategories"
+                textField="categoryName" valueField="categoryId" (valueChange)="handleCategoryChange($event)">
+            </kendo-dropdownlist>
+        </div>
+        <div class="col-xs-12 col-sm-4 example-col">
+            <p>State:</p>
+            <kendo-dropdownlist [disabled]="isDisabledProducts" [defaultItem]="defaultItemProducts"
+                [data]="dataResultProducts" [value]="selectedProduct" textField="productName" valueField="productId"
+                (valueChange)="handleProductChange($event)">
+            </kendo-dropdownlist>
+        </div>
+        <div class="col-xs-12 col-sm-4 example-col">
+            <p>City:</p>
+            <kendo-dropdownlist [disabled]="isDisabledOrders" [defaultItem]="defaultItemOrders"
+                [data]="dataResultOrders" [value]="selectedOrder" textField="orderName" valueField="orderId"
+                (valueChange)="handleOrderChange($event)">
+            </kendo-dropdownlist>
+        </div>
+    </div>
+</div>
     `,
   styles: [
     `
@@ -114,7 +96,7 @@ export class AppComponent {
     { orderName: 'Bagalkot', orderId: 9, productId: 5 },
     { orderName: 'Bengaluru Urban', orderId: 10, productId: 5 },
     { orderName: 'Bengaluru Rural', orderId: 11, productId: 5 },
-    { orderName: '	Udupi', orderId: 12, productId: 5 },
+    { orderName: 'Udupi', orderId: 12, productId: 5 },
     { orderName: 'Alappuzha', orderId: 13, productId: 6 },
     { orderName: 'Ernakulam', orderId: 14, productId: 6 },
     { orderName: 'Kozhikode', orderId: 15, productId: 6 },
